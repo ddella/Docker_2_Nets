@@ -12,7 +12,7 @@ I will show two methods:
 Use the following steps to start a Docker container with 2 NICs.
 
 1. Create (don't run) a container with one NIC
->Looks like you can have more than one `--network` command with Docker command line.
+>Looks like you can't have more than one `--network` command with Docker command line.
 ```sh
 docker create -p 2222:22 --network frontend \
 --name twonics --hostname twonics --ip 172.31.10.25 \
@@ -30,19 +30,19 @@ docker network connect --ip 172.31.11.25 backend twonics
 ```
 >Here I decided to specify a static IP address, even though I have a DHCP pool in my network:
 
-4. Start the container and enjoy :-)
+4. Start the container and enjoy 😀
 ```sh
 docker start twonics
 ```
 
-5. In this case, OpenSSH was installed and running on my container, so lets dive in it:
+5. In this case, OpenSSH was installed and running on my container, so let's dive in it:
 ```sh
 ssh -l root -p 2222 localhost
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 2. Docker Compose
-This is easier and simpler. Create simple `yaml` file and start the container with Docker Compose. In my case I named the file [twonics.yml](twonics.yml).
+This is easier and simpler. Create simple `yaml` file and start the container with Docker Compose. In my case, I named the file [twonics.yml](twonics.yml).
 
 ```sh
 docker compose -f twonics.yml --project-name twonics up -d
