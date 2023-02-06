@@ -1,0 +1,24 @@
+# filename: twonics.yml
+# Starts a Docker container with 2 NICs
+#   docker compose -f twonics.yml --project-name twonics up -d
+#
+networks:
+   backend:
+      name: backend
+   frontend:
+      name: frontend
+
+services:
+  twonics:
+    image: sshd
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+    container_name: twonics
+    hostname: twonics
+    domainname: backend.com
+    networks:
+      backend:
+        ipv4_address: 172.31.11.25
+      frontend:
+        ipv4_address: 172.31.10.25
